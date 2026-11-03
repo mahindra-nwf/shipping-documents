@@ -5,6 +5,10 @@
 .header h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: -.04em; margin: 0; }
 .count { border: 1px solid #565960; border-radius: 999px; color: #d2cec4; font-size: .78rem; padding: 9px 12px; white-space: nowrap; }
 .content { margin: 0 auto; max-width: 1120px; padding: 42px 24px 56px; }
+.tabs { border-bottom: 1px solid #d8cdbb; display: flex; gap: 22px; margin-bottom: 30px; }
+.tabs button { background: none; border: 0; border-bottom: 3px solid transparent; color: #716b62; cursor: pointer; font: inherit; font-weight: 800; padding: 0 2px 12px; }
+.tabs button:hover, .tabs .activeTab { border-bottom-color: #e5a83b; color: #8b5d0c; }
+.tabs span { background: #e5a83b; border-radius: 999px; color: #22252a; font-size: .72rem; margin-left: 5px; padding: 2px 6px; }
 .heading { align-items: end; display: flex; justify-content: space-between; margin-bottom: 22px; }
 .heading h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.03em; margin: 0; }
 .helper { color: #716b62; font-size: .9rem; }
@@ -19,6 +23,9 @@
 .thumbnail:hover, .thumbnail:focus-visible { border-color: #a66f10; outline: 3px solid #e5a83b66; }
 .thumbnail img { display: block; height: 92px; object-fit: cover; width: 100%; }
 .thumbnail span { color: #716b62; display: block; font-size: .72rem; padding: 7px; }
+.cardActions { border-top: 1px solid #d8cdbb; display: flex; gap: 8px; margin-top: 18px; padding-top: 14px; }
+.cardActions button { background: #e8dcc1; border: 0; border-radius: 6px; color: #76500d; cursor: pointer; font-size: .78rem; font-weight: 800; padding: 9px 11px; }
+.cardActions .danger { background: #f0d7d2; color: #7b2424; }
 .empty { padding: 44px 24px; text-align: center; }
 .empty h2 { margin: 0 0 8px; }
 .empty p { color: #716b62; }
