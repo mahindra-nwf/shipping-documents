@@ -10,7 +10,7 @@
 .sectionHeading h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.03em; margin: 0; }
 .helper { color: #65747d; font-size: .95rem; }
 .actionGrid { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.actionCard { align-items: center; background: #fff; border: 1px solid #dbe4e8; border-radius: 14px; box-shadow: 0 7px 22px #173b5210; display: flex; gap: 16px; min-height: 126px; padding: 22px; transition: border-color .2s, transform .2s, box-shadow .2s; }
+.actionCard { align-items: center; background: #fff; border: 1px solid #dbe4e8; border-radius: 14px; box-shadow: 0 7px 22px #173b5210; display: flex; justify-content: center; min-height: 126px; padding: 22px; text-align: center; transition: border-color .2s, transform .2s, box-shadow .2s; }
 .actionCard:hover, .actionCard:focus-visible { border-color: #e5a83b; box-shadow: 0 10px 26px #22252a1a; transform: translateY(-2px); }
 .actionCard:focus-visible { outline: 3px solid #e5a83b; outline-offset: 3px; }
 .actionIcon { align-items: center; background: #f1dfb8; border-radius: 12px; color: #8b5d0c; display: flex; font-size: 2rem; height: 58px; justify-content: center; width: 58px; }
