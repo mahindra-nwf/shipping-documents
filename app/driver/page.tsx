@@ -55,8 +55,6 @@ export default function DriverPage() {
         if (pageError) throw pageError;
         setUploadProgress(20 + Math.round(((index + 1) / pages.length) * 75));
       }
-      const saved = JSON.parse(localStorage.getItem("shipping-documents-temp") ?? "[]");
-      localStorage.setItem("shipping-documents-temp", JSON.stringify([{ id: documentRow.id, documentType, uploader: uploader.trim(), createdAt: new Date().toISOString(), pages }, ...saved]));
       router.push("/driver/success");
     } catch (error) {
       console.error(error);
