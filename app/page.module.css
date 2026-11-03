@@ -14,7 +14,10 @@
 .actionCard:hover, .actionCard:focus-visible { border-color: #e5a83b; box-shadow: 0 10px 26px #22252a1a; transform: translateY(-2px); }
 .actionCard:focus-visible { outline: 3px solid #e5a83b; outline-offset: 3px; }
 .actionIcon { align-items: center; background: #f1dfb8; border-radius: 12px; color: #8b5d0c; display: flex; font-size: 2rem; height: 58px; justify-content: center; width: 58px; }
-.actionIcon svg { fill: none; height: 30px; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; width: 30px; }
+.actionIcon svg { height: 31px; width: 31px; }
+.documentShape { fill: #22252a; }
+.documentFold { fill: #f1dfb8; }
+.documentLines { fill: none; stroke: #f1dfb8; stroke-linecap: round; stroke-width: 1.5; }
 .actionCard strong, .actionCard small { display: block; }
 .actionCard strong { font-size: 1.08rem; }
 .actionCard small { color: #65747d; margin-top: 5px; }
