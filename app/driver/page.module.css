@@ -44,4 +44,5 @@
 .submit { background: #e5a83b; color: #22252a; width: 100%; }
 .submit:hover, .scan:hover { filter: brightness(.96); }
 .success { background: #e1edd6; border: 1px solid #a9c28c; border-radius: 8px; color: #365424; margin: 16px 0 0; padding: 12px; }
+.error { background: #f6dddd; border: 1px solid #d59a9a; border-radius: 8px; color: #7b2424; margin: 16px 0 0; padding: 12px; }
 @media (max-width: 650px) { .header { align-items: flex-start; flex-direction: column; gap: 18px; } .phase { align-self: flex-start; } .panel { padding: 20px; } .captureOptions { grid-template-columns: 1fr; } }
