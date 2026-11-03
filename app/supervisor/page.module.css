@@ -1,0 +1,30 @@
+.page { background: #e8e3d9; color: #22252a; font-family: Arial, sans-serif; min-height: 100vh; }
+.header { align-items: flex-end; background: #22252a; color: #f5f1e8; display: flex; gap: 28px; justify-content: space-between; padding: 30px max(24px, calc((100vw - 1120px) / 2)) 34px; }
+.back { align-self: flex-start; color: #d2cec4; font-size: .9rem; }
+.eyebrow { color: #e5a83b; font-size: .7rem; font-weight: 800; letter-spacing: .15em; margin: 0 0 10px; }
+.header h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: -.04em; margin: 0; }
+.count { border: 1px solid #565960; border-radius: 999px; color: #d2cec4; font-size: .78rem; padding: 9px 12px; white-space: nowrap; }
+.content { margin: 0 auto; max-width: 1120px; padding: 42px 24px 56px; }
+.heading { align-items: end; display: flex; justify-content: space-between; margin-bottom: 22px; }
+.heading h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.03em; margin: 0; }
+.helper { color: #716b62; font-size: .9rem; }
+.grid { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card, .empty { background: #f5f1e8; border: 1px solid #d8cdbb; border-radius: 14px; padding: 20px; }
+.cardHeader { align-items: flex-start; display: flex; justify-content: space-between; gap: 14px; }
+.card h3 { font-size: 1.1rem; margin: 0; }
+.cardHeader p, .cardHeader time { color: #716b62; font-size: .82rem; margin: 6px 0 0; }
+.cardHeader time { white-space: nowrap; }
+.thumbnails { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.thumbnail { background: #fffdf8; border: 1px solid #d8cdbb; border-radius: 8px; cursor: pointer; overflow: hidden; padding: 0; text-align: left; width: 112px; }
+.thumbnail:hover, .thumbnail:focus-visible { border-color: #a66f10; outline: 3px solid #e5a83b66; }
+.thumbnail img { display: block; height: 92px; object-fit: cover; width: 100%; }
+.thumbnail span { color: #716b62; display: block; font-size: .72rem; padding: 7px; }
+.empty { padding: 44px 24px; text-align: center; }
+.empty h2 { margin: 0 0 8px; }
+.empty p { color: #716b62; }
+.empty a { background: #e5a83b; border-radius: 8px; color: #22252a; display: inline-block; font-weight: 800; margin-top: 12px; padding: 12px 16px; text-decoration: none; }
+.lightbox { align-items: center; background: #22252aef; display: flex; inset: 0; justify-content: center; padding: 24px; position: fixed; z-index: 10; }
+.lightboxContent { max-height: 90vh; max-width: 900px; position: relative; }
+.lightboxContent img { display: block; max-height: 84vh; max-width: 90vw; object-fit: contain; }
+.lightboxContent button { background: #e5a83b; border: 0; border-radius: 6px; color: #22252a; cursor: pointer; font-weight: 800; margin-bottom: 10px; padding: 9px 12px; }
+@media (max-width: 680px) { .header { align-items: flex-start; flex-direction: column; gap: 18px; } .count { align-self: flex-start; } .heading { align-items: flex-start; flex-direction: column; gap: 8px; } .grid { grid-template-columns: 1fr; } }
