@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "../../lib/supabase/client";
 import styles from "./page.module.css";
 
@@ -9,6 +10,7 @@ const documentTypes = ["Bill of Lading", "Packing Slip", "Proof of Delivery", "O
 type Page = { name: string; dataUrl: string; file?: File };
 
 export default function DriverPage() {
+  const router = useRouter();
   const [documentType, setDocumentType] = useState(documentTypes[0]);
   const [uploader, setUploader] = useState(() => typeof window === "undefined" ? "" : localStorage.getItem("shipping-uploader") ?? "");
   const [pages, setPages] = useState<Page[]>([]);
@@ -49,7 +51,7 @@ export default function DriverPage() {
       }
       const saved = JSON.parse(localStorage.getItem("shipping-documents-temp") ?? "[]");
       localStorage.setItem("shipping-documents-temp", JSON.stringify([{ id: documentRow.id, documentType, uploader: uploader.trim(), createdAt: new Date().toISOString(), pages }, ...saved]));
-      setSubmitted(true);
+      router.push("/driver/success");
     } catch (error) {
       console.error(error);
       setSubmitted(false);
