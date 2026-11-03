@@ -1,0 +1,25 @@
+.page { min-height: 100vh; background: #eef1f3; color: #17232d; padding: 36px max(24px, calc((100vw - 1280px) / 2)); font-family: Arial, sans-serif; }
+.back { color: #52616b; font-size: .9rem; }
+.kicker { color: #63727c; font-size: .72rem; font-weight: 800; letter-spacing: .15em; margin: 42px 0 12px; }
+.title { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.05em; margin: 0; }
+.subtitle { color: #63727c; margin: 12px 0 34px; }
+.grid { display: grid; gap: 20px; grid-template-columns: repeat(4, 1fr); }
+.card { background: var(--paper); border-radius: 16px; box-shadow: 0 14px 35px #17232d14; overflow: hidden; }
+.top { background: var(--primary); color: white; font-size: .85rem; font-weight: 700; padding: 16px; }
+.dot { background: var(--accent); border-radius: 50%; display: inline-block; height: 10px; margin-right: 8px; width: 10px; }
+.menu { float: right; letter-spacing: 3px; opacity: .7; }
+.body { min-height: 245px; padding: 28px 22px 22px; }
+.small { color: var(--accent); font-size: .67rem; font-weight: 800; letter-spacing: .15em; }
+.cardTitle { font-size: 1.4rem; line-height: 1.1; margin: 20px 0 12px; }
+.body p:not(.small) { color: var(--muted); line-height: 1.5; }
+.button { background: var(--accent); border: 0; border-radius: 8px; color: var(--button-text); font-weight: 700; margin-top: 25px; padding: 13px 15px; }
+.button span { margin-left: 20px; }
+.swatches { display: flex; gap: 8px; padding: 0 22px 18px; }
+.swatches span { border: 1px solid #0002; border-radius: 5px; height: 28px; width: 28px; }
+.cardFooter { border-top: 1px solid #0001; color: var(--muted); font-size: .75rem; padding: 14px 22px 18px; }
+.warm { --primary: #19324a; --accent: #e87532; --paper: #f7f0e5; --muted: #6d6259; --button-text: #fff; }
+.cool { --primary: #334155; --accent: #3b82f6; --paper: #f8fafc; --muted: #64748b; --button-text: #fff; }
+.fresh { --primary: #245c45; --accent: #a3c94a; --paper: #f5f0df; --muted: #66705b; --button-text: #173627; }
+.dark { --primary: #22252a; --accent: #e5a83b; --paper: #f5f1e8; --muted: #69675f; --button-text: #22252a; }
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
