@@ -25,4 +25,4 @@
 .features { border-top: 1px solid #e4ecfc; display: grid; gap: 36px; grid-template-columns: repeat(3, 1fr); margin: 0 auto; max-width: 1180px; padding: 42px 28px 76px; }.features h2 { font-size: 1.35rem; letter-spacing: -.03em; margin: 14px 0 8px; }.features p { color: #64748b; line-height: 1.55; margin: 0; max-width: 270px; }
 .page footer { border-top: 1px solid #e4ecfc; color: #64748b; font-size: .78rem; padding: 22px 28px 28px; text-align: center; }.page footer span { color: #2563eb; margin: 0 7px; }
 @media (max-width: 800px) { .hero { gap: 46px; grid-template-columns: 1fr; padding-top: 56px; }.heroPanel { max-width: 560px; transform: none; width: 100%; }.features { grid-template-columns: 1fr; }.features p { max-width: 520px; } }
-@media (prefers-reduced-motion: reduce) { .heroPanel { transform: none; } * { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+@media (prefers-reduced-motion: reduce) { .heroPanel { transform: none; } :global(*) { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
