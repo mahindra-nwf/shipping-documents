@@ -16,6 +16,7 @@ export default function DriverPage() {
   const [pages, setPages] = useState<Page[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [previewPage, setPreviewPage] = useState<Page | null>(null);
 
@@ -34,6 +35,7 @@ export default function DriverPage() {
     event.preventDefault();
     if (isUploading || !uploader.trim() || pages.length === 0) return;
     setIsUploading(true);
+    setUploadProgress(5);
     setErrorMessage("");
     localStorage.setItem("shipping-uploader", uploader.trim());
     try {
@@ -41,6 +43,7 @@ export default function DriverPage() {
       const shipmentNumber = `TEMP-${crypto.randomUUID()}`;
       const { data: shipmentRow, error: shipmentError } = await supabase.from("shipments").insert({ shipment_number: shipmentNumber, direction: "outbound" }).select("id").single();
       if (shipmentError) throw shipmentError;
+      setUploadProgress(20);
       const { data: documentRow, error: documentError } = await supabase.from("shipping_documents").insert({ shipment_id: shipmentRow.id, document_type: documentType, uploader_name: uploader.trim(), status: "submitted", submitted_at: new Date().toISOString() }).select("id").single();
       if (documentError) throw documentError;
       for (const [index, page] of pages.entries()) {
@@ -50,6 +53,7 @@ export default function DriverPage() {
         if (uploadError) throw uploadError;
         const { error: pageError } = await supabase.from("document_pages").insert({ document_id: documentRow.id, page_number: index + 1, storage_path: storagePath, file_name: page.name, mime_type: page.file.type, file_size_bytes: page.file.size });
         if (pageError) throw pageError;
+        setUploadProgress(20 + Math.round(((index + 1) / pages.length) * 75));
       }
       const saved = JSON.parse(localStorage.getItem("shipping-documents-temp") ?? "[]");
       localStorage.setItem("shipping-documents-temp", JSON.stringify([{ id: documentRow.id, documentType, uploader: uploader.trim(), createdAt: new Date().toISOString(), pages }, ...saved]));
@@ -59,7 +63,17 @@ export default function DriverPage() {
       setSubmitted(false);
       setErrorMessage("Upload could not be completed. Please try again.");
       setIsUploading(false);
+      setUploadProgress(0);
     }
+  }
+
+  function clearForm() {
+    if (isUploading) return;
+    setDocumentType(documentTypes[0]);
+    setPages([]);
+    setSubmitted(false);
+    setErrorMessage("");
+    setUploadProgress(0);
   }
 
   function replacePage(index: number, event: ChangeEvent<HTMLInputElement>) {
@@ -74,6 +88,6 @@ export default function DriverPage() {
   return <main className={styles.page}><header className={styles.header}><Link href="/" className={styles.back}>← Home</Link><div><p className={styles.eyebrow}>DRIVER WORKSPACE</p><h1>Capture shipping document</h1></div><span className={styles.phase}>Preview mode</span></header>
     <form className={styles.form} onSubmit={submit}><section className={styles.panel}><p className={styles.step}>1 <span>DOCUMENT TYPE</span></p><label>Document type<select value={documentType} onChange={(event) => setDocumentType(event.target.value)}>{documentTypes.map((type) => <option key={type}>{type}</option>)}</select></label></section>
       <section className={styles.panel}><p className={styles.step}>2 <span>DOCUMENT PAGES</span></p><div className={styles.captureOptions}><label className={styles.captureOption}><input type="file" accept="image/*" multiple onChange={addPages} /><strong>Upload from device</strong></label><label className={styles.captureOption}><input type="file" accept="image/*" capture="environment" multiple onChange={addPages} /><strong>Open camera</strong></label></div>{pages.length > 0 && <div className={styles.previews}>{pages.map((page, index) => <div className={styles.preview} key={`${page.name}-${index}`}><div className={styles.imageWrap}><img src={page.dataUrl} alt={`Document page ${index + 1}`} onClick={() => setPreviewPage(page)} /><button type="button" className={styles.expandButton} aria-label={`Expand page ${index + 1}`} onClick={() => setPreviewPage(page)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M20 15v5h-5" /></svg></button></div><div className={styles.pageActions}><button type="button" onClick={() => setPreviewPage(page)}>Preview</button><label>Replace<input type="file" accept="image/*" capture="environment" onChange={(event) => replacePage(index, event)} /></label><button type="button" aria-label={`Remove page ${index + 1}`} onClick={() => setPages((current) => current.filter((_, item) => item !== index))}>×</button></div><span>Page {index + 1}</span></div>)}</div>}{previewPage && <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label="Document preview" onClick={() => setPreviewPage(null)}><div className={styles.lightboxContent} onClick={(event) => event.stopPropagation()}><button type="button" className={styles.closePreview} onClick={() => setPreviewPage(null)}>Close</button><img src={previewPage.dataUrl} alt="Large document preview" /></div></div>}</section>
-      <section className={styles.panel}><p className={styles.step}>3 <span>SUBMIT</span></p><label>Uploader name<input required value={uploader} onChange={(event) => setUploader(event.target.value)} placeholder="Enter your name before submitting" /></label><p className={styles.note}>Uploaded to the public review database.</p><button className={styles.submit} disabled={isUploading} type="submit">{isUploading ? "Uploading…" : "Upload"} {!isUploading && <span>→</span>}</button>{submitted && <p className={styles.success}>Uploaded successfully to Supabase.</p>}{errorMessage && <p className={styles.error}>{errorMessage}</p>}</section>
+      <section className={styles.panel}><p className={styles.step}>3 <span>SUBMIT</span></p><label>Uploader name<input required value={uploader} onChange={(event) => setUploader(event.target.value)} placeholder="Enter your name before submitting" /></label><p className={styles.note}>Uploaded to the public review database.</p>{isUploading && <div className={styles.progress} aria-live="polite"><div className={styles.progressLabel}><span>Uploading document…</span><strong>{uploadProgress}%</strong></div><div className={styles.progressTrack}><div style={{ width: `${uploadProgress}%` }} /></div></div>}<div className={styles.submitActions}><button className={styles.submit} disabled={isUploading} type="submit">{isUploading ? "Uploading…" : "Upload"} {!isUploading && <span>→</span>}</button><button className={styles.clearButton} disabled={isUploading} type="button" onClick={clearForm}>Clear form</button></div>{submitted && <p className={styles.success}>Uploaded successfully to Supabase.</p>}{errorMessage && <p className={styles.error}>{errorMessage}</p>}</section>
     </form></main>;
 }
