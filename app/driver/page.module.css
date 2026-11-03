@@ -22,7 +22,6 @@
 .captureOption:hover, .captureOption:focus-within { background: #e8dcc1; border-color: #a66f10; }
 .captureOption input { display: none !important; }
 .captureOption strong { color: #8b5d0c; }
-.choiceIcon { fill: none; height: 22px; margin-right: 7px; stroke: currentColor; stroke-linecap: square; stroke-linejoin: miter; stroke-width: 1.8; vertical-align: -5px; width: 22px; }
 .captureOption small { color: #716b62; font-weight: 400; margin-top: 8px; }
 .previews { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; }
 .preview { background: #fffdf8; border: 1px solid #d8cdbb; border-radius: 8px; overflow: hidden; position: relative; width: 130px; }
