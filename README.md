@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shipping Documents
+
+Live site: [shipping-docs.vercel.app](https://shipping-docs.vercel.app)
+
+This is a [Next.js](https://nextjs.org) project for Northwest Frozen shipping document capture.
 
 ## Getting Started
 
