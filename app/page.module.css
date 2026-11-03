@@ -23,4 +23,5 @@
 .noticeMark { align-items: center; background: #e5a83b; border-radius: 50%; color: #22252a; display: flex; flex: 0 0 22px; font-size: .85rem; font-weight: 800; height: 22px; justify-content: center; margin-top: 1px; }
 .footer { color: #716b62; font-size: .82rem; padding: 0 24px 30px; text-align: center; }
 .footer span { color: #b67c15; margin: 0 6px; }
+.footer a { color: #8b5d0c; font-weight: 700; text-decoration: underline; }
 @media (max-width: 680px) { .hero { align-items: flex-start; flex-direction: column; padding-top: 36px; } .status { align-self: flex-start; } .workspace { padding-top: 36px; } .sectionHeading { align-items: flex-start; flex-direction: column; gap: 8px; } .actionGrid { grid-template-columns: 1fr; } }

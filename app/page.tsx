@@ -12,6 +12,6 @@ export default function Home() {
     <section className={styles.workspace} aria-labelledby="workspace-heading"><div className={styles.sectionHeading}><div><p className={styles.eyebrow}>WORKSPACE</p><h2 id="workspace-heading">What do you need to do?</h2></div><p className={styles.helper}>Choose a starting point</p></div>
       <div className={styles.actionGrid}>{quickActions.map((action) => <Link className={styles.actionCard} href={action.href} key={action.href}><span className={styles.actionIcon} aria-hidden="true">{action.icon}</span><span><strong>{action.label}</strong><small>{action.detail}</small></span><span className={styles.arrow} aria-hidden="true">→</span></Link>)}</div>
       <div className={styles.notice}><span className={styles.noticeMark} aria-hidden="true">i</span><p><strong>Getting started</strong><br />Document capture and secure sign-in will be added in the next phases.</p></div>
-    </section><footer className={styles.footer}>Northwest Frozen LLC <span>•</span> Shipping Documents</footer>
+    </section><footer className={styles.footer}>Northwest Frozen LLC <span>•</span> Shipping Documents <span>•</span> <a href="https://github.com/mahindra-nwf/shipping-documents" target="_blank" rel="noreferrer">GitHub repository</a></footer>
   </main>;
 }
