@@ -13,6 +13,8 @@ export default function SupervisorPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const supabase = createSupabaseBrowserClient();
   const loadDocuments = useCallback(async () => { const { data } = await supabase.from("shipping_documents").select("id, document_type, uploader_name, created_at, deleted_at, document_pages(storage_path)").order("created_at", { ascending: false }); setDocuments(data ?? []); }, [supabase]);
+  // The initial fetch hydrates the client-only review screen from Supabase.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { loadDocuments(); }, [loadDocuments]);
   const imageUrl = (path: string) => supabase.storage.from("shipping-documents").getPublicUrl(path).data.publicUrl;
   const recent = documents.filter((document) => !document.deleted_at);
