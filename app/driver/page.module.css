@@ -1,5 +1,6 @@
 .page { min-height: 100vh; background: #e8e3d9; color: #22252a; font-family: Arial, sans-serif; }
 .header { align-items: flex-end; background: #22252a; color: #f5f1e8; display: flex; gap: 28px; justify-content: space-between; padding: 30px max(24px, calc((100vw - 900px) / 2)) 34px; }
+.header > div { flex: 1; text-align: center; }
 .back { align-self: flex-start; border: 1px solid #6b6e74; border-radius: 7px; color: #f5f1e8; font-size: .9rem; padding: 8px 13px; text-decoration: none; transition: border-color .2s, background .2s; }
 .back:hover, .back:focus-visible { background: #2d3035; border-color: #e5a83b; }
 .back:focus-visible { outline: 3px solid #e5a83b; outline-offset: 3px; }
