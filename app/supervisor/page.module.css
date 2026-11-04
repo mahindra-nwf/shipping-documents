@@ -30,8 +30,10 @@
 .cardLayout .card { display: block; padding: 20px; }
 .cardLayout .thumbnails { margin-top: 18px; }
 .cardLayout .cardActions { border-left: 0; border-top: 1px solid #d8cdbb; justify-content: flex-start; margin-top: 18px; padding-left: 0; padding-top: 14px; }
-.grid:not(.cardLayout) .thumbnail { border-radius: 7px; width: 48px; }
-.grid:not(.cardLayout) .thumbnail img { height: 42px; }
+.grid:not(.cardLayout) .card { border-radius: 5px; border-left: 3px solid #e5a83b; padding: 10px 14px; }
+.grid:not(.cardLayout) .thumbnail { align-items: center; border-radius: 7px; display: flex; height: 42px; justify-content: center; width: 48px; }
+.grid:not(.cardLayout) .thumbnail::before { color: #a66f10; content: "▤"; font-size: 1.35rem; line-height: 1; }
+.grid:not(.cardLayout) .thumbnail img { display: none; }
 .grid:not(.cardLayout) .thumbnail span { display: none; }
 .empty { background: #f5f1e8; border: 1px solid #d8cdbb; border-radius: 14px; padding: 20px; }
 .cardHeader { align-items: flex-start; display: flex; justify-content: space-between; gap: 14px; }
