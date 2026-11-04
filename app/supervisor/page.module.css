@@ -22,6 +22,8 @@
 .filters input, .filters select { background: #fffdf8; border: 1px solid #d8cdbb; border-radius: 8px; color: #22252a; font: inherit; min-height: 42px; padding: 0 12px; }
 .filters input { flex: 1; min-width: 180px; }
 .filters input:focus, .filters select:focus { border-color: #a66f10; outline: 3px solid #e5a83b66; }
+.dateField { color: #716b62; display: flex; flex-direction: column; font-size: .72rem; font-weight: 800; gap: 3px; }
+.dateField input { min-width: 132px; }
 .grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
 .card { align-items: center; background: #f5f1e8; border: 1px solid #d8cdbb; border-radius: 14px; display: grid; gap: 20px; grid-template-columns: minmax(175px, 1fr) minmax(240px, 2fr) auto; padding: 16px 20px; }
 .cardLayout { gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
