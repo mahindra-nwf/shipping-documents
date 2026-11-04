@@ -30,10 +30,12 @@
 .cardLayout .card { display: block; padding: 20px; }
 .cardLayout .thumbnails { margin-top: 18px; }
 .cardLayout .cardActions { border-left: 0; border-top: 1px solid #d8cdbb; justify-content: flex-start; margin-top: 18px; padding-left: 0; padding-top: 14px; }
-.grid:not(.cardLayout) .card { border-radius: 5px; border-left: 3px solid #e5a83b; padding: 10px 14px; }
+.grid:not(.cardLayout) { gap: 8px; }
+.grid:not(.cardLayout) .card { border-radius: 5px; border-left: 3px solid #e5a83b; gap: 28px; padding: 13px 18px; }
 .grid:not(.cardLayout) .thumbnail { align-items: center; border-radius: 7px; display: flex; height: 42px; justify-content: center; width: 48px; }
 .grid:not(.cardLayout) .thumbnail::before { color: #a66f10; content: "▤"; font-size: 1.35rem; line-height: 1; }
 .grid:not(.cardLayout) .thumbnail img { display: none; }
+.pageCount { color: #8b5d0c; font-size: .72rem; font-weight: 800; }
 .grid:not(.cardLayout) .thumbnail span { display: none; }
 .empty { background: #f5f1e8; border: 1px solid #d8cdbb; border-radius: 14px; padding: 20px; }
 .cardHeader { align-items: flex-start; display: flex; justify-content: space-between; gap: 14px; }
@@ -60,4 +62,8 @@
 .lightboxContent { max-height: 90vh; max-width: 900px; position: relative; }
 .lightboxContent img { display: block; max-height: 84vh; max-width: 90vw; object-fit: contain; }
 .lightboxContent button { background: #e5a83b; border: 0; border-radius: 6px; color: #22252a; cursor: pointer; font-weight: 800; margin-bottom: 10px; padding: 9px 12px; }
+.previewToolbar, .previewNavigation { align-items: center; display: flex; justify-content: space-between; gap: 14px; }
+.previewToolbar span { color: #f5f1e8; font-size: .85rem; }
+.previewNavigation { justify-content: center; margin-top: 14px; }
+.previewNavigation button:disabled { cursor: not-allowed; opacity: .45; }
 @media (max-width: 760px) { .header { align-items: flex-start; flex-direction: column; gap: 18px; } .count { align-self: flex-start; } .heading { align-items: flex-start; flex-direction: column; gap: 8px; } .tabs { align-items: flex-start; flex-wrap: wrap; } .layoutToggle { margin-left: 0; width: 100%; } .filters { flex-direction: column; } .filters input { width: auto; } .card, .cardLayout { grid-template-columns: 1fr; } .card { align-items: stretch; } .cardActions, .cardLayout .cardActions { border-left: 0; border-top: 1px solid #d8cdbb; justify-content: flex-start; padding-left: 0; padding-top: 14px; } }
