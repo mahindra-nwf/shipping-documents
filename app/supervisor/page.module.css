@@ -14,18 +14,19 @@
 .heading { align-items: end; display: flex; justify-content: space-between; margin-bottom: 22px; }
 .heading h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.03em; margin: 0; }
 .helper { color: #716b62; font-size: .9rem; }
-.grid { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.card, .empty { background: #f5f1e8; border: 1px solid #d8cdbb; border-radius: 14px; padding: 20px; }
+.grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+.card { align-items: center; background: #f5f1e8; border: 1px solid #d8cdbb; border-radius: 14px; display: grid; gap: 20px; grid-template-columns: minmax(175px, 1fr) minmax(240px, 2fr) auto; padding: 16px 20px; }
+.empty { background: #f5f1e8; border: 1px solid #d8cdbb; border-radius: 14px; padding: 20px; }
 .cardHeader { align-items: flex-start; display: flex; justify-content: space-between; gap: 14px; }
 .card h3 { font-size: 1.1rem; margin: 0; }
 .cardHeader p, .cardHeader time { color: #716b62; font-size: .82rem; margin: 6px 0 0; }
 .cardHeader time { white-space: nowrap; }
-.thumbnails { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.thumbnails { display: flex; flex-wrap: wrap; gap: 10px; }
 .thumbnail { background: #fffdf8; border: 1px solid #d8cdbb; border-radius: 8px; cursor: pointer; overflow: hidden; padding: 0; text-align: left; width: 112px; }
 .thumbnail:hover, .thumbnail:focus-visible { border-color: #a66f10; outline: 3px solid #e5a83b66; }
 .thumbnail img { display: block; height: 92px; object-fit: cover; width: 100%; }
 .thumbnail span { color: #716b62; display: block; font-size: .72rem; padding: 7px; }
-.cardActions { border-top: 1px solid #d8cdbb; display: flex; gap: 8px; margin-top: 18px; padding-top: 14px; }
+.cardActions { border-left: 1px solid #d8cdbb; display: flex; gap: 8px; justify-content: flex-end; padding-left: 20px; }
 .cardActions button { background: #e8dcc1; border: 0; border-radius: 6px; color: #76500d; cursor: pointer; font-size: .78rem; font-weight: 800; padding: 9px 11px; }
 .cardActions .danger { background: #f0d7d2; color: #7b2424; }
 .empty { padding: 44px 24px; text-align: center; }
@@ -36,4 +37,4 @@
 .lightboxContent { max-height: 90vh; max-width: 900px; position: relative; }
 .lightboxContent img { display: block; max-height: 84vh; max-width: 90vw; object-fit: contain; }
 .lightboxContent button { background: #e5a83b; border: 0; border-radius: 6px; color: #22252a; cursor: pointer; font-weight: 800; margin-bottom: 10px; padding: 9px 12px; }
-@media (max-width: 680px) { .header { align-items: flex-start; flex-direction: column; gap: 18px; } .count { align-self: flex-start; } .heading { align-items: flex-start; flex-direction: column; gap: 8px; } .grid { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .header { align-items: flex-start; flex-direction: column; gap: 18px; } .count { align-self: flex-start; } .heading { align-items: flex-start; flex-direction: column; gap: 8px; } .card { align-items: stretch; grid-template-columns: 1fr; } .cardActions { border-left: 0; border-top: 1px solid #d8cdbb; justify-content: flex-start; padding-left: 0; padding-top: 14px; } }
