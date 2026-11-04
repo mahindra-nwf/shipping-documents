@@ -22,7 +22,7 @@ async def ocr_image(file: UploadFile = File(...)):
         temporary.write(await file.read())
         path = temporary.name
     try:
-        result = next(ocr.predict(path))
+        result = ocr.predict(path)[0]
         data = result.json if hasattr(result, "json") else result
         if callable(data):
             data = data()
