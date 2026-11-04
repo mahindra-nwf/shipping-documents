@@ -1,0 +1,6 @@
+services:
+  local-ocr:
+    build: ./local-ocr
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
