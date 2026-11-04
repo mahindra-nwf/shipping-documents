@@ -21,7 +21,7 @@
 .capture strong { color: #8b5d0c; font-size: 1.1rem; }
 .capture small { color: #716b62; font-weight: 400; margin-top: 8px; }
 .captureOptions { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.captureOption { align-items: center; background: #ece4d3; border: 2px dashed #c7a85d; border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; height: 160px; justify-content: center; margin-bottom: 0 !important; padding: 18px; text-align: center; }
+.captureOption { align-items: center; background: #ece4d3; border: 2px dashed #c7a85d; border-radius: 12px; cursor: pointer; display: flex !important; flex-direction: column; height: 160px; justify-content: center; margin-bottom: 0 !important; padding: 18px; text-align: center; }
 .captureOption:hover, .captureOption:focus-within { background: #e8dcc1; border-color: #a66f10; }
 .captureOption input { display: none !important; }
 .captureOption strong { color: #8b5d0c; text-align: center; width: 100%; }
