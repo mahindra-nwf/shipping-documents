@@ -6,6 +6,7 @@ export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const search = params.get("search")?.trim() ?? "";
   const type = params.get("type")?.trim() ?? "";
+  const date = params.get("date")?.trim() ?? "";
   const from = params.get("from")?.trim() ?? "";
   const to = params.get("to")?.trim() ?? "";
 
@@ -17,8 +18,12 @@ export async function GET(request: NextRequest) {
 
   if (type) query = query.eq("document_type", type);
   if (search) query = query.or(`document_type.ilike.%${search}%,uploader_name.ilike.%${search}%`);
-  if (from) query = query.gte("created_at", `${from}T00:00:00.000Z`);
-  if (to) query = query.lte("created_at", `${to}T23:59:59.999Z`);
+  if (date) {
+    query = query.gte("created_at", `${date}T00:00:00.000Z`).lte("created_at", `${date}T23:59:59.999Z`);
+  } else {
+    if (from) query = query.gte("created_at", `${from}T00:00:00.000Z`);
+    if (to) query = query.lte("created_at", `${to}T23:59:59.999Z`);
+  }
 
   const { data, error } = await query;
   if (error) return NextResponse.json({ error: "Unable to load documents." }, { status: 500 });
