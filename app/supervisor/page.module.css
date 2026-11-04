@@ -46,10 +46,6 @@
 .cardActions { border-left: 1px solid #d8cdbb; display: flex; gap: 8px; justify-content: flex-end; padding-left: 20px; }
 .cardActions button { background: #e8dcc1; border: 0; border-radius: 6px; color: #76500d; cursor: pointer; font-size: .78rem; font-weight: 800; padding: 9px 11px; }
 .cardActions .danger { background: #f0d7d2; color: #7b2424; }
-.cardActions button:disabled { cursor: wait; opacity: .6; }
-.ocrResult { background: #fffdf8; border: 1px solid #d8cdbb; border-radius: 10px; margin-top: 18px; padding: 16px; }
-.ocrResult strong { color: #76500d; display: block; font-size: .82rem; }
-.ocrResult pre { color: #514b42; font: .85rem/1.5 Arial, sans-serif; margin: 8px 0 0; max-height: 300px; overflow: auto; white-space: pre-wrap; }
 .empty { padding: 44px 24px; text-align: center; }
 .empty h2 { margin: 0 0 8px; }
 .empty p { color: #716b62; }

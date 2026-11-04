@@ -36,10 +36,6 @@
 .pageActions button, .pageActions label { background: #e8dcc1; border: 0; border-radius: 5px; color: #76500d; cursor: pointer; font-size: .68rem; font-weight: 800; margin: 0; padding: 6px 7px; }
 .pageActions button:last-child { background: #22252a; color: #fff; font-size: 1rem; line-height: 1; margin-left: auto; padding: 3px 7px; }
 .pageActions input { display: none !important; }
-.pageActions button:disabled { cursor: wait; opacity: .6; }
-.ocrResult { background: #fffdf8; border: 1px solid #d8cdbb; border-radius: 8px; margin-top: 16px; padding: 14px; }
-.ocrResult strong { color: #76500d; display: block; font-size: .8rem; }
-.ocrResult pre { color: #514b42; font: .85rem/1.5 Arial, sans-serif; margin: 8px 0 0; max-height: 220px; overflow: auto; white-space: pre-wrap; }
 .lightbox { align-items: center; background: #22252aeF; display: flex; inset: 0; justify-content: center; padding: 24px; position: fixed; z-index: 10; }
 .lightboxContent { max-height: 90vh; max-width: 900px; position: relative; }
 .lightboxContent img { display: block; max-height: 85vh; max-width: 90vw; object-fit: contain; }
