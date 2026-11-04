@@ -1,9 +1,4 @@
 services:
-  local-ocr:
-    build: ./local-ocr
-    ports:
-      - "8000:8000"
-    restart: unless-stopped
   local-ocr-paddle:
     build: ./local-ocr-paddle
     ports:
