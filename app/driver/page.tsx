@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "../../lib/supabase/client";
+import { createWorker } from "tesseract.js";
 import styles from "./page.module.css";
 
 const documentTypes = ["Bill of Lading", "Packing Slip", "Proof of Delivery", "Other outbound document"];
@@ -19,6 +20,8 @@ export default function DriverPage() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [previewPage, setPreviewPage] = useState<Page | null>(null);
+  const [ocrText, setOcrText] = useState("");
+  const [ocrPage, setOcrPage] = useState<number | null>(null);
 
   function addPages(event: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files ?? []);
@@ -83,9 +86,25 @@ export default function DriverPage() {
     event.target.value = "";
   }
 
+  async function extractText(page: Page, index: number) {
+    setOcrPage(index);
+    setOcrText("Reading image…");
+    try {
+      const worker = await createWorker("eng");
+      const result = await worker.recognize(page.dataUrl);
+      setOcrText(result.data.text.trim() || "No text could be detected.");
+      await worker.terminate();
+    } catch (error) {
+      console.error(error);
+      setOcrText("OCR could not read this image. Try a clearer photo.");
+    } finally {
+      setOcrPage(null);
+    }
+  }
+
   return <main className={styles.page}><header className={styles.header}><Link href="/" className={styles.back}>← Home</Link><div><p className={styles.eyebrow}>DRIVER WORKSPACE</p><h1>Capture shipping document</h1></div><span className={styles.phase}>Preview mode</span></header>
     <form className={styles.form} onSubmit={submit}><section className={styles.panel}><p className={styles.step}>1 <span>DOCUMENT TYPE</span></p><label>Document type<select value={documentType} onChange={(event) => setDocumentType(event.target.value)}>{documentTypes.map((type) => <option key={type}>{type}</option>)}</select></label></section>
-      <section className={styles.panel}><p className={styles.step}>2 <span>DOCUMENT PAGES</span></p><div className={styles.captureOptions}><label className={styles.captureOption}><input type="file" accept="image/*" multiple onChange={addPages} /><strong>Upload from device</strong></label><label className={styles.captureOption}><input type="file" accept="image/*" capture="environment" multiple onChange={addPages} /><strong>Open camera</strong></label></div>{pages.length > 0 && <div className={styles.previews}>{pages.map((page, index) => <div className={styles.preview} key={`${page.name}-${index}`}><div className={styles.imageWrap}><img src={page.dataUrl} alt={`Document page ${index + 1}`} onClick={() => setPreviewPage(page)} /><button type="button" className={styles.expandButton} aria-label={`Expand page ${index + 1}`} onClick={() => setPreviewPage(page)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M20 15v5h-5" /></svg></button></div><div className={styles.pageActions}><button type="button" onClick={() => setPreviewPage(page)}>Preview</button><label>Replace<input type="file" accept="image/*" capture="environment" onChange={(event) => replacePage(index, event)} /></label><button type="button" aria-label={`Remove page ${index + 1}`} onClick={() => setPages((current) => current.filter((_, item) => item !== index))}>×</button></div><span>Page {index + 1}</span></div>)}</div>}{previewPage && <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label="Document preview" onClick={() => setPreviewPage(null)}><div className={styles.lightboxContent} onClick={(event) => event.stopPropagation()}><button type="button" className={styles.closePreview} onClick={() => setPreviewPage(null)}>Close</button><img src={previewPage.dataUrl} alt="Large document preview" /></div></div>}</section>
+      <section className={styles.panel}><p className={styles.step}>2 <span>DOCUMENT PAGES</span></p><div className={styles.captureOptions}><label className={styles.captureOption}><input type="file" accept="image/*" multiple onChange={addPages} /><strong>Upload from device</strong></label><label className={styles.captureOption}><input type="file" accept="image/*" capture="environment" multiple onChange={addPages} /><strong>Open camera</strong></label></div>{pages.length > 0 && <div className={styles.previews}>{pages.map((page, index) => <div className={styles.preview} key={`${page.name}-${index}`}><div className={styles.imageWrap}><img src={page.dataUrl} alt={`Document page ${index + 1}`} onClick={() => setPreviewPage(page)} /><button type="button" className={styles.expandButton} aria-label={`Expand page ${index + 1}`} onClick={() => setPreviewPage(page)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M20 15v5h-5" /></svg></button></div><div className={styles.pageActions}><button type="button" onClick={() => setPreviewPage(page)}>Preview</button><button type="button" onClick={() => extractText(page, index)} disabled={ocrPage !== null}>{ocrPage === index ? "Reading…" : "Extract text"}</button><label>Replace<input type="file" accept="image/*" capture="environment" onChange={(event) => replacePage(index, event)} /></label><button type="button" aria-label={`Remove page ${index + 1}`} onClick={() => setPages((current) => current.filter((_, item) => item !== index))}>×</button></div><span>Page {index + 1}</span></div>)}</div>}{ocrText && <div className={styles.ocrResult} aria-live="polite"><strong>Browser OCR result</strong><pre>{ocrText}</pre></div>}{previewPage && <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label="Document preview" onClick={() => setPreviewPage(null)}><div className={styles.lightboxContent} onClick={(event) => event.stopPropagation()}><button type="button" className={styles.closePreview} onClick={() => setPreviewPage(null)}>Close</button><img src={previewPage.dataUrl} alt="Large document preview" /></div></div>}</section>
       <section className={styles.panel}><p className={styles.step}>3 <span>SUBMIT</span></p><label>Uploader name<input required value={uploader} onChange={(event) => setUploader(event.target.value)} placeholder="Enter your name before submitting" /></label><p className={styles.note}>Uploaded to the public review database.</p>{isUploading && <div className={styles.progress} aria-live="polite"><div className={styles.progressLabel}><span>Uploading document…</span><strong>{uploadProgress}%</strong></div><div className={styles.progressTrack}><div style={{ width: `${uploadProgress}%` }} /></div></div>}<div className={styles.submitActions}><button className={styles.submit} disabled={isUploading} type="submit">{isUploading ? "Uploading…" : "Upload"} {!isUploading && <span>→</span>}</button><button className={styles.clearButton} disabled={isUploading} type="button" onClick={clearForm}>Clear form</button></div>{submitted && <p className={styles.success}>Uploaded successfully to Supabase.</p>}{errorMessage && <p className={styles.error}>{errorMessage}</p>}</section>
     </form></main>;
 }
