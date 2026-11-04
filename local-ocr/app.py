@@ -2,9 +2,11 @@ from io import BytesIO
 
 import pytesseract
 from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 
 app = FastAPI(title="Shipping Documents Local OCR", version="0.1.0")
+app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000", "https://shipping-docs.vercel.app"], allow_methods=["GET", "POST"], allow_headers=["*"])
 
 
 @app.get("/health")
