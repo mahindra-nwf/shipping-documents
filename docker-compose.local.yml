@@ -4,3 +4,8 @@ services:
     ports:
       - "8000:8000"
     restart: unless-stopped
+  local-ocr-paddle:
+    build: ./local-ocr-paddle
+    ports:
+      - "8002:8001"
+    restart: unless-stopped
